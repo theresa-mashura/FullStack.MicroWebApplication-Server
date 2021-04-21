@@ -1,0 +1,122 @@
+@startuml
+'https://plantuml.com/class-diagram
+'
+'abstract class AbstractList
+'abstract AbstractCollection
+'interface List
+'interface Collection
+'
+'List <|-- AbstractList
+'Collection <|-- AbstractCollection
+'
+'Collection <|- List
+'AbstractCollection <|- AbstractList
+'AbstractList <|-- ArrayList
+
+class Video {
+Long videoID
+String title
+int length
+int viewCount
+String description
+Date videoPosted
+List<Tags>
+getVideoId()
+setVideoId()
+getTitle()
+setTitle()
+getViewCount()
+incrementViewCount()
+getDescription()
+setDescription()
+getDatePosted()
+setDatePosted()
+selectVideo()
+startVideo()
+pauseVideo()
+stopVideo()
+postVideo()
+autoPlayVideo()
+addTag()
+}
+
+class Display {
+String settings
+String volume
+fullScreen()
+theaterModeScreen()
+changeVolume()
+}
+
+User <-- Admin
+User <-- BasicUser
+
+Abstract class User{
+String email;
+String userName;
+String password;
+String firstName;
+String lastName;
+getEmail()
+setEmail()
+getUserName()
+setUserName
+getPassword()
+setPassword()
+getFirstName()
+setFirstName()
+getLastName()
+setLastName()
+commentOnVideo()
+likeVideo()
+dislikeVideo()
+getEmail()
+setEmail()
+getUserName()
+setUserName
+getPassword()
+setPassword()
+getFirstName()
+setFirstName()
+getLastName()
+setLastName()
+}
+
+class Admin{
+List<Video> postedVideos;
+showAllVideos()
+deleteVideo()
+}
+
+class BasicUser {
+List<Video> likedVideos;
+List<Video> postedVideos;
+showUserVideos()
+deleteVideo()
+uploadVideo()
+}
+
+class Comment {
+String text
+Date datePosted
+submitComment()
+getCommentDate()
+setCommentDate()
+likeComment()
+dislikeComment()
+}
+
+class Tags {
+Object[] elementData
+
+}
+
+
+
+enum VideoStatus {
+Public
+Private
+Unlisted
+}
+
+@enduml
