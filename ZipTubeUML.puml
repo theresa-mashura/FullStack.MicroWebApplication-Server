@@ -14,12 +14,14 @@
 'AbstractList <|-- ArrayList
 
 class Video {
-Long videoID
+Long videoId
 String title
 int length
 int viewCount
 String description
 Date videoPosted
+@oneToMany
+column commentId
 List<Tags>
 getVideoId()
 setVideoId()
@@ -52,11 +54,14 @@ User <-- Admin
 User <-- BasicUser
 
 Abstract class User{
+Long userId;
 String email;
 String userName;
 String password;
 String firstName;
 String lastName;
+getUserId()
+setUserId()
 getEmail()
 setEmail()
 getUserName()
@@ -70,22 +75,15 @@ setLastName()
 commentOnVideo()
 likeVideo()
 dislikeVideo()
-getEmail()
-setEmail()
-getUserName()
-setUserName
-getPassword()
-setPassword()
-getFirstName()
-setFirstName()
-getLastName()
-setLastName()
+@oneToMany
+column commentId
 }
 
 class Admin{
 List<Video> postedVideos;
 showAllVideos()
 deleteVideo()
+banUser()
 }
 
 class BasicUser {
@@ -97,8 +95,15 @@ uploadVideo()
 }
 
 class Comment {
+Long commentId;
 String text
 Date datePosted
+@ManyToOne
+column videoId
+@ManyToOne
+column userId
+getCommentId()
+setCommentId()
 submitComment()
 getCommentDate()
 setCommentDate()
@@ -114,9 +119,9 @@ Object[] elementData
 
 
 enum VideoStatus {
-Public
-Private
-Unlisted
+PUBLIC
+PRIVATE
+UNLISTED
 }
 
 @enduml
