@@ -23,9 +23,9 @@ public class VideoService {
         return repository.findAll();
     }
 
-    // orElse(null) explantion:
+    // orElse(null) explanation:
     // https://stackoverflow.com/questions/44101061/missing-crudrepositoryfindone-method
-    public Video getOne(@PathVariable Long id){
+    public Video getOne(Long id){
         return repository.findById(id).orElse(null);
     }
 
@@ -33,7 +33,7 @@ public class VideoService {
         return repository.save(video);
     }
 
-    public Video update(@PathVariable Long id, @RequestBody Video video){
+    public Video update(Long id, Video video){
         Video temp = repository.findById(id).orElse(null);
         temp.setTitle(video.getTitle());
         temp.setUserId(video.getUserId());
@@ -46,7 +46,7 @@ public class VideoService {
         return repository.save(temp);
     }
 
-    public Boolean remove(@PathVariable Long id){
+    public Boolean remove(Long id){
         repository.deleteById(id);
         return true;
     }
