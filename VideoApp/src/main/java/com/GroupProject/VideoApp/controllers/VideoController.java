@@ -16,7 +16,6 @@ public class VideoController {
     }
 
 //    {
-//        "videoId": 123,
 //            "title": "Test Video",
 //            "userId": 456,
 //            "lengthOfVideo": 90,
@@ -33,7 +32,7 @@ public class VideoController {
     }
 
     @PutMapping("/video/{id}")
-    public ResponseEntity<Video> updatePerson(@PathVariable Long id, Video video){
+    public ResponseEntity<Video> updatePerson(@PathVariable Long id, @RequestBody Video video){
         return new ResponseEntity<>(service.update(id,video),HttpStatus.OK);
     }
 
