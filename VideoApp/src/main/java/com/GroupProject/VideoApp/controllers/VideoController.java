@@ -15,6 +15,18 @@ public class VideoController {
         this.service = service;
     }
 
+//    {
+//        "videoId": 123,
+//            "title": "Test Video",
+//            "userId": 456,
+//            "lengthOfVideo": 90,
+//            "viewCount": 0,
+//            "description": "This is a test video",
+//            "videoPostedDate": "2021-04-26",
+//            "likeCount": 0,
+//            "dislikeCount": 0
+//    }
+
     @PostMapping("/video")
     public ResponseEntity<Video> createVideo(@RequestBody Video video){
         return new ResponseEntity<>(service.add(video), HttpStatus.CREATED);
