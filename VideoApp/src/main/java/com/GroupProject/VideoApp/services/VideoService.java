@@ -5,6 +5,7 @@ import com.GroupProject.VideoApp.repositories.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class VideoService {
         return repository.save(video);
     }
 
-    public Video update(@PathVariable Long id, Video video){
+    public Video update(@PathVariable Long id, @RequestBody Video video){
         Video temp = repository.findById(id).orElse(null);
         temp.setTitle(video.getTitle());
         temp.setUserId(video.getUserId());
