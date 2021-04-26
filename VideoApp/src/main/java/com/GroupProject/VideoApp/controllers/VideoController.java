@@ -32,22 +32,22 @@ public class VideoController {
     }
 
     @PutMapping("/video/{id}")
-    public ResponseEntity<Video> updatePerson(@PathVariable Long id, @RequestBody Video video){
+    public ResponseEntity<Video> updateVideo(@PathVariable Long id, @RequestBody Video video){
         return new ResponseEntity<>(service.update(id,video),HttpStatus.OK);
     }
 
     @GetMapping("/video/{id}")
-    public ResponseEntity<Video> getPerson(@PathVariable Long id){
+    public ResponseEntity<Video> getVideoById(@PathVariable Long id){
         return new ResponseEntity<>(service.getOne(id),HttpStatus.OK);
     }
 
     @GetMapping("/video")
-    public ResponseEntity<Iterable<Video>> getAllPeople(){
+    public ResponseEntity<Iterable<Video>> getAllVideos(){
         return new ResponseEntity<>(service.getAll(),HttpStatus.OK);
     }
 
     @DeleteMapping("/video/{id}")
-    public ResponseEntity<Boolean> deletePerson(@PathVariable Long id){
+    public ResponseEntity<Boolean> deleteVideo(@PathVariable Long id){
         return new ResponseEntity<>(service.remove(id),HttpStatus.OK);
     }
 

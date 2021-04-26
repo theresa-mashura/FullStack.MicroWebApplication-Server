@@ -23,7 +23,7 @@ public class VideoService {
         return repository.findAll();
     }
 
-    // orElse(null) explantion:
+    // orElse(null) explanation:
     // https://stackoverflow.com/questions/44101061/missing-crudrepositoryfindone-method
     public Video getOne(Long id){
         return repository.findById(id).orElse(null);
