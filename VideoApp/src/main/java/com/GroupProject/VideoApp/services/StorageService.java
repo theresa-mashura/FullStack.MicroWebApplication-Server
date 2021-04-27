@@ -24,8 +24,11 @@ public class StorageService {
     private AmazonS3 s3Client;
 
     public String uploadFile(MultipartFile file) {
+        File fileObj = convertMultiPartFileToFile(file);
         String filename = System.currentTimeMillis()+"_"+file.getOriginalFilename(); // Put timestamp to make sure file name is unique
-        s3Client.putObject(new PutObjectRequest(bucketName, filename, ))
+        s3Client.putObject(new PutObjectRequest(bucketName, filename, fileObj));
+        fileObj.delete(); // delete so it doesn't keep adding it
+        return "File Uploaded";
     }
 
     public File convertMultiPartFileToFile(MultipartFile file) {
