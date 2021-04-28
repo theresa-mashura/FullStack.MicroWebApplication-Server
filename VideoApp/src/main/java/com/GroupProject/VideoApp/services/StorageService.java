@@ -2,8 +2,10 @@ package com.GroupProject.VideoApp.services;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import lombok.extern.java.Log;
-import lombok.extern.slf4j.Slf4j;
+import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import com.amazonaws.util.IOUtils;
+import lombok.extern.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 @Service
-@Slf4j
+@Slf4j  // Lombok - allows us to use log without having to create logger factory
 public class StorageService {
 
     @Value("${application.bucket.name}")
@@ -28,7 +30,26 @@ public class StorageService {
         String filename = System.currentTimeMillis()+"_"+file.getOriginalFilename(); // Put timestamp to make sure file name is unique
         s3Client.putObject(new PutObjectRequest(bucketName, filename, fileObj));
         fileObj.delete(); // delete so it doesn't keep adding it
-        return "File Uploaded";
+        return "File Uploaded: " + filename;
+    }
+
+
+    public byte[] downloadFile(String filename) {
+        S3Object s3Object = s3Client.getObject(bucketName, filename);
+        S3ObjectInputStream inputStream = s3Object.getObjectContent();
+        try {
+            byte[] content = IOUtils.toByteArray(inputStream);
+            return content;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String deleteFile(String filename) {
+        s3Client.deleteObject(bucketName, filename);
+        return filename + " removed.";
+
     }
 
     public File convertMultiPartFileToFile(MultipartFile file) {

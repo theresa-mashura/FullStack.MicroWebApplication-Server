@@ -1,4 +1,5 @@
 
+
 cloud:
     aws:
       credentials:
@@ -9,6 +10,7 @@ cloud:
       stack:
         auto: false
 
+
 application:
   bucket:
     name: ziptube1
@@ -16,3 +18,5 @@ application:
 
 server:
   port: 8090
+
+

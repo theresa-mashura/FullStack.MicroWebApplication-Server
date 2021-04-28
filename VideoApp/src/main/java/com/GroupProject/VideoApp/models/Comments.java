@@ -1,6 +1,9 @@
 package com.GroupProject.VideoApp.models;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,6 +11,8 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
+@Getter
+@Setter
 public class Comments {
 
     @Id
@@ -28,51 +33,5 @@ public class Comments {
         this.text = text;
         this.datePosted = datePosted;
     }
-
-    public Long getId () {
-        return id;
-    }
-
-    public void SetId() {
-        this.id = id;
-
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public Date getDatePosted() {
-        return datePosted;
-    }
-
-    public void setDatePosted(Date datePosted) {
-        this.datePosted = datePosted;
-    }
-
-
-
-    public String submitComment () {
-        return null;
-
-    }
-
-    public String likeComment() {
-        return null;
-
-    }
-
-    public String dislikeComment () {
-        return null;
-
-    }
-
-
-
-
 
 }
