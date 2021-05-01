@@ -1,21 +1,18 @@
 package com.GroupProject.VideoApp.services;
 
 import com.GroupProject.VideoApp.models.Video;
-import com.GroupProject.VideoApp.repositories.VideoRepository;
+import com.GroupProject.VideoApp.repositories.VideoDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import java.util.List;
 
 @Service
-public class VideoService {
+public class VideoDataService {
 
-    private VideoRepository repository;
+    private VideoDataRepository repository;
 
     @Autowired
-    public VideoService(VideoRepository repository) {
+    public VideoDataService(VideoDataRepository repository) {
         this.repository = repository;
     }
 

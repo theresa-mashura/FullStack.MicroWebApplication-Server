@@ -1,7 +1,9 @@
 package com.GroupProject.VideoApp.models;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,6 +12,8 @@ import java.util.Date;
 @Entity
 @Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Video {
 
     @Id
@@ -25,23 +29,6 @@ public class Video {
     Integer likeCount = 0;
     Integer dislikeCount = 0;
     //List<Tag> videoTags;
-
-
-    public Video(Long videoId, String title, Long userId, Integer lengthOfVideo, Integer viewCount, String description, Date videoPostedDate, Integer likeCount, Integer dislikeCount) {
-        this.videoId = videoId;
-        this.title = title;
-        this.userId = userId;
-        this.lengthOfVideo = lengthOfVideo;
-        this.viewCount = viewCount;
-        this.description = description;
-        this.videoPostedDate = videoPostedDate;
-        this.likeCount = likeCount;
-        this.dislikeCount = dislikeCount;
-    }
-
-    public Video(){
-
-    }
 
 
     public void incrementDislikeCount(){

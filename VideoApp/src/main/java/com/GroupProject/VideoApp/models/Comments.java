@@ -1,7 +1,8 @@
 package com.GroupProject.VideoApp.models;
 
-
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -13,25 +14,15 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Comments {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-
     String text;
     Date datePosted;
-
-
-    public Comments() {
-
-    }
-
-    public Comments( Long id, String text, Date datePosted){
-        this.id = id;
-        this.text = text;
-        this.datePosted = datePosted;
-    }
 
 }

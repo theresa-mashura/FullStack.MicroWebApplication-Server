@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @Slf4j
-public class StorageConfig {
+public class VideoStorageConfig {
 
     @Value("${cloud.aws.credentials.access-key}")
     private String accessKey;

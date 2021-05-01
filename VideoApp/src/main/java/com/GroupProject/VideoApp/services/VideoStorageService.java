@@ -1,5 +1,6 @@
 package com.GroupProject.VideoApp.services;
 
+import com.GroupProject.VideoApp.models.Video;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
@@ -8,18 +9,16 @@ import com.amazonaws.util.IOUtils;
 import lombok.extern.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.annotation.MultipartConfig;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 @Service
 @Slf4j  // Lombok - allows us to use log without having to create logger factory
-public class StorageService {
+public class VideoStorageService {
 
     @Value("${application.bucket.name}")
     private String bucketName;
@@ -27,15 +26,30 @@ public class StorageService {
     @Autowired
     private AmazonS3 s3Client;
 
+    @Autowired
+    private VideoDataService videoDataService;
 
+    // Add Video to VideoDataRepository & upload the file
     public String uploadFile(MultipartFile file) {
+        Long videoId = videoDataService.add(new Video()).getVideoId();
+
         File fileObj = convertMultiPartFileToFile(file);
-        String filename = System.currentTimeMillis()+"_"+file.getOriginalFilename(); // Put timestamp to make sure file name is unique
-        s3Client.putObject(new PutObjectRequest(bucketName, filename, fileObj));
+        String filename = videoId + "_" + file.getOriginalFilename();
+        s3Client.putObject(
+                new PutObjectRequest(bucketName, filename, fileObj)
+        );
         fileObj.delete(); // delete so it doesn't keep adding it
         return "File Uploaded: " + filename;
     }
 
+    // Use %20 for spaces in filenames when testing via Insomnia, Postman, etc.
+    // Delete from AWS S3 and from VideoDataRepository
+    public String deleteFile(String filename) {
+        Long videoId = Long.parseLong(filename.substring(0, filename.indexOf("_")));
+        s3Client.deleteObject(bucketName, filename);
+        videoDataService.remove(videoId);
+        return filename + " removed." + videoId;
+    }
 
     public byte[] downloadFile(String filename) {
         S3Object s3Object = s3Client.getObject(bucketName, filename);
@@ -47,12 +61,6 @@ public class StorageService {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public String deleteFile(String filename) {
-        s3Client.deleteObject(bucketName, filename);
-        return filename + " removed.";
-
     }
 
     public File convertMultiPartFileToFile(MultipartFile file) {

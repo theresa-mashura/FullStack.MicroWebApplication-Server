@@ -1,6 +1,8 @@
 package com.GroupProject.VideoApp.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -8,6 +10,8 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,19 +21,5 @@ public class User {
     String password;
     String firstName;
     String lastName;
-
-
-
-    public User() {
-    }
-
-    public User(Long userId, String email, String userName, String password, String firstName, String lastName) {
-        this.userId = userId;
-        this.email = email;
-        this.userName = userName;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 
 }
