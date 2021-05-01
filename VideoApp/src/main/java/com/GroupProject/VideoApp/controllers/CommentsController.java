@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class CommentsController {
-    @Autowired
+
     private CommentsService service;
 
-
+    @Autowired
     public CommentsController(CommentsService service) {
         this.service = service;
     }
+
     @GetMapping("/comments")
     public ResponseEntity<Iterable<Comments>> getCommentList() {
         return new ResponseEntity<>(service.index(), HttpStatus.OK);

@@ -11,10 +11,13 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/file")
 public class VideoStorageController {
-    
-    @Autowired
+
     private VideoStorageService service;
 
+    @Autowired
+    public VideoStorageController(VideoStorageService service) {
+        this.service = service;
+    }
 
     @PostMapping("/upload")
     public ResponseEntity<String> uploadFile(@RequestParam(value = "file") MultipartFile file) {

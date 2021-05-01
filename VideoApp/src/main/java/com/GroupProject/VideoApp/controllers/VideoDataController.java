@@ -2,6 +2,7 @@ package com.GroupProject.VideoApp.controllers;
 
 import com.GroupProject.VideoApp.models.Video;
 import com.GroupProject.VideoApp.services.VideoDataService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ public class VideoDataController {
 
     private final VideoDataService service;
 
+    @Autowired
     public VideoDataController(VideoDataService service) {
         this.service = service;
     }
