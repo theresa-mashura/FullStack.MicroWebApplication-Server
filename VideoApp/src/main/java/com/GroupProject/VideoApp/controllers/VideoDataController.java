@@ -1,17 +1,19 @@
 package com.GroupProject.VideoApp.controllers;
 
 import com.GroupProject.VideoApp.models.Video;
-import com.GroupProject.VideoApp.services.VideoService;
+import com.GroupProject.VideoApp.services.VideoDataService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class VideoController {
+public class VideoDataController {
 
-    private final VideoService service;
+    private final VideoDataService service;
 
-    public VideoController(VideoService service) {
+    @Autowired
+    public VideoDataController(VideoDataService service) {
         this.service = service;
     }
 
@@ -26,10 +28,6 @@ public class VideoController {
 //            "dislikeCount": 0
 //    }
 
-    @PostMapping("/video")
-    public ResponseEntity<Video> createVideo(@RequestBody Video video){
-        return new ResponseEntity<>(service.add(video), HttpStatus.CREATED);
-    }
 
     @PutMapping("/video/{id}")
     public ResponseEntity<Video> updateVideo(@PathVariable Long id, @RequestBody Video video){
@@ -45,11 +43,5 @@ public class VideoController {
     public ResponseEntity<Iterable<Video>> getAllVideos(){
         return new ResponseEntity<>(service.getAll(),HttpStatus.OK);
     }
-
-    @DeleteMapping("/video/{id}")
-    public ResponseEntity<Boolean> deleteVideo(@PathVariable Long id){
-        return new ResponseEntity<>(service.remove(id),HttpStatus.OK);
-    }
-
 
 }
