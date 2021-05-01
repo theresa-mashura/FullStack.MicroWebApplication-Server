@@ -1,4 +1,4 @@
-#Contributors:
+# Contributors:
 * Chris Allen (@Christopher-Allen-21)
 * Theresa Mashura (@theresa-mashura)
 * Justin Banks (@Jbanksalpha),
