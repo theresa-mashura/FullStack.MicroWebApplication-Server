@@ -33,6 +33,7 @@ public class UserService {
         change.setPassword(user.getPassword());
         change.setFirstName(user.getFirstName());
         change.setLastName(user.getLastName());
+        change.setRole(user.getRole());
         return userRepository.save(change);
     }
 

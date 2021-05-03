@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<Iterable<User>> getAllUser(@PathVariable Long id){
+    public ResponseEntity<Iterable<User>> getAllUser(){
         return new ResponseEntity<>(userService.findAllUsers(), HttpStatus.OK);
     }
 
