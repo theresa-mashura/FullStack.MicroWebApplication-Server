@@ -4,7 +4,12 @@
 * Justin Banks (@Jbanksalpha),
 * Mike Ninh (@MNinh)
 
-FRONT END: https://github.com/Christopher-Allen-21/FullStack.MicroWebApplication-Client
+## Back End of ZipTube Application
+* This repository
+
+
+## Front End of ZipTube Application
+* https://github.com/Christopher-Allen-21/FullStack.MicroWebApplication-Client
 
 # Micro Web Application - Server
 * **Objective** - to create an implementation of a small web service
