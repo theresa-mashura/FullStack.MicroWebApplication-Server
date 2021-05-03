@@ -2,6 +2,7 @@ package com.GroupProject.VideoApp.controllers;
 
 import com.GroupProject.VideoApp.models.User;
 import com.GroupProject.VideoApp.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +13,8 @@ public class UserController {
 
     private UserService userService;
 
-    public UserController(UserService userService){this.userService = userService;}
+    @Autowired
+    public UserController(UserService userService) {this.userService = userService;}
 
 
     @PostMapping

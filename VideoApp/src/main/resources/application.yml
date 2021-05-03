@@ -1,0 +1,22 @@
+
+
+cloud:
+    aws:
+      credentials:
+        access-key: AKIA2OJ2F52D7DVAC6QH
+        secret-key: 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
+      region:
+        static: us-east-1
+      stack:
+        auto: false
+
+
+application:
+  bucket:
+    name: ziptube1
+
+
+server:
+  port: 8090
+
+

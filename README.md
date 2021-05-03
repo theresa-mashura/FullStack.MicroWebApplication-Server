@@ -1,3 +1,11 @@
+# Contributors:
+* Chris Allen (@Christopher-Allen-21)
+* Theresa Mashura (@theresa-mashura)
+* Justin Banks (@Jbanksalpha),
+* Mike Ninh (@MNinh)
+
+FRONT END: https://github.com/Christopher-Allen-21/FullStack.MicroWebApplication-Client
+
 # Micro Web Application - Server
 * **Objective** - to create an implementation of a small web service
 * **Purpose** - to demonstrate the construction of a full-stacked web-application
