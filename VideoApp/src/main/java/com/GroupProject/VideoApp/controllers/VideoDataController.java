@@ -34,6 +34,11 @@ public class VideoDataController {
         return new ResponseEntity<>(service.update(id,video),HttpStatus.OK);
     }
 
+    @PatchMapping("/video/{id}")
+    public ResponseEntity<Video> updateTitleDescCatg(@PathVariable Long id, @RequestBody Video video){
+        return new ResponseEntity<>(service.updateTitleDescriptionCategory(id,video),HttpStatus.OK);
+    }
+
     @GetMapping("/video/{id}")
     public ResponseEntity<Video> getVideoById(@PathVariable Long id){
         return new ResponseEntity<>(service.getOne(id),HttpStatus.OK);

@@ -30,16 +30,16 @@ public class VideoStorageService {
     private VideoDataService videoDataService;
 
     // Add Video to VideoDataRepository & upload the file
-    public String uploadFile(MultipartFile file) {
+    public Long uploadFile(MultipartFile file) {
         Long videoId = videoDataService.add(new Video()).getVideoId();
 
         File fileObj = convertMultiPartFileToFile(file);
-        String filename = videoId + "_" + file.getOriginalFilename();
+        String filename = videoId.toString(); /*+ "_" + file.getOriginalFilename();*/
         s3Client.putObject(
                 new PutObjectRequest(bucketName, filename, fileObj)
         );
         fileObj.delete(); // delete so it doesn't keep adding it
-        return "File Uploaded: " + filename;
+        return videoId;
     }
 
     // Use %20 for spaces in filenames when testing via Insomnia, Postman, etc.

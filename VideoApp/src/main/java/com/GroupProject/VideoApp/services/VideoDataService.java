@@ -43,6 +43,14 @@ public class VideoDataService {
         return repository.save(temp);
     }
 
+    public Video updateTitleDescriptionCategory(Long id, Video video) {
+        Video temp = repository.findById(id).orElse(null);
+        temp.setTitle(video.getTitle());
+        temp.setDescription(video.getDescription());
+        temp.setCategory(video.getCategory());
+        return this.repository.save(temp);
+    }
+
     public Boolean remove(Long id){
         repository.deleteById(id);
         return true;

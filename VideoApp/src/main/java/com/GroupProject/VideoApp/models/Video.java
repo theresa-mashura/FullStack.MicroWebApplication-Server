@@ -28,6 +28,7 @@ public class Video {
     Date videoPostedDate;
     Integer likeCount = 0;
     Integer dislikeCount = 0;
+    String category;
     //List<Tag> videoTags;
 
 
