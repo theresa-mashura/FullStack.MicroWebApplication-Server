@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin    // host serving JS may be different from host serving the data, need to allow CORS
 public class VideoDataController {
 
     private final VideoDataService service;

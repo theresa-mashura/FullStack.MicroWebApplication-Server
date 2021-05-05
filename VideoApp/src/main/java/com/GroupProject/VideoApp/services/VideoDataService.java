@@ -48,6 +48,7 @@ public class VideoDataService {
         temp.setTitle(video.getTitle());
         temp.setDescription(video.getDescription());
         temp.setCategory(video.getCategory());
+        temp.setVideoPostedDate(video.getVideoPostedDate());
         return this.repository.save(temp);
     }
 
