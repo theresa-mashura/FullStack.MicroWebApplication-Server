@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin    // host serving JS may be different from host serving the data, need to allow CORS
 public class VideoDataController {
 
     private final VideoDataService service;
@@ -32,6 +33,11 @@ public class VideoDataController {
     @PutMapping("/video/{id}")
     public ResponseEntity<Video> updateVideo(@PathVariable Long id, @RequestBody Video video){
         return new ResponseEntity<>(service.update(id,video),HttpStatus.OK);
+    }
+
+    @PatchMapping("/video/{id}")
+    public ResponseEntity<Video> updateTitleDescCatg(@PathVariable Long id, @RequestBody Video video){
+        return new ResponseEntity<>(service.updateTitleDescriptionCategory(id,video),HttpStatus.OK);
     }
 
     @GetMapping("/video/{id}")

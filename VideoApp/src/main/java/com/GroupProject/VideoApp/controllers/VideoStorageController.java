@@ -1,5 +1,6 @@
 package com.GroupProject.VideoApp.controllers;
 
+
 import com.GroupProject.VideoApp.services.VideoStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -10,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/file")
+@CrossOrigin
 public class VideoStorageController {
 
     private VideoStorageService service;
@@ -20,7 +22,7 @@ public class VideoStorageController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadFile(@RequestParam(value = "file") MultipartFile file) {
+    public ResponseEntity<Long> uploadFile(@RequestParam(value = "file") MultipartFile file) {
         return new ResponseEntity<>(service.uploadFile(file), HttpStatus.OK);
     }
 
