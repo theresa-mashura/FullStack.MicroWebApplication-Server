@@ -4,6 +4,8 @@ import com.GroupProject.VideoApp.models.Video;
 import com.GroupProject.VideoApp.repositories.VideoDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,6 +21,78 @@ public class VideoDataService {
     public Iterable<Video> getAll(){
         return repository.findAll();
     }
+
+    public List<Video> getAllNews() {
+        List<Video> allNewsVideos = new ArrayList<>();
+        for(Video v : repository.findAll()){
+            if(v.getCategory().equals("News")){
+                allNewsVideos.add(v);
+            }
+        }
+        return allNewsVideos;
+    }
+
+    public List<Video> getAllSports() {
+        List<Video> allSportsVideos = new ArrayList<>();
+        for(Video v : repository.findAll()){
+            if(v.getCategory().equals("Sports")){
+                allSportsVideos.add(v);
+            }
+        }
+        return allSportsVideos;
+    }
+
+    public List<Video> getAllEntertaniment() {
+        List<Video> allEntertainmentVideos = new ArrayList<>();
+        for(Video v : repository.findAll()){
+            if(v.getCategory().equals("Entertainment")){
+                allEntertainmentVideos.add(v);
+            }
+        }
+        return allEntertainmentVideos;
+    }
+
+    public List<Video> getAllMusic() {
+        List<Video> allMusicVideos = new ArrayList<>();
+        for(Video v : repository.findAll()){
+            if(v.getCategory().equals("Music")){
+                allMusicVideos.add(v);
+            }
+        }
+        return allMusicVideos;
+    }
+
+    public List<Video> getAllTraveling() {
+        List<Video> allTravelingVideos = new ArrayList<>();
+        for(Video v : repository.findAll()){
+            if(v.getCategory().equals("Traveling")){
+                allTravelingVideos.add(v);
+            }
+        }
+        return allTravelingVideos;
+    }
+
+    public List<Video> getAllFitness() {
+        List<Video> allFitnessVideos = new ArrayList<>();
+        for(Video v : repository.findAll()){
+            if(v.getCategory().equals("Fitness")){
+                allFitnessVideos.add(v);
+            }
+        }
+        return allFitnessVideos;
+    }
+
+    public List<Video> getAllVideoGames() {
+        List<Video> allVideoGamesVideos = new ArrayList<>();
+        for(Video v : repository.findAll()){
+            if(v.getCategory().equals("Video Games")){
+                allVideoGamesVideos.add(v);
+            }
+        }
+        return allVideoGamesVideos;
+    }
+
+
 
     // orElse(null) explanation:
     // https://stackoverflow.com/questions/44101061/missing-crudrepositoryfindone-method
