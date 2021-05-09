@@ -36,6 +36,18 @@ public class Video {
         this.dislikeCount++;
     }
 
+    public void decrementDislikeCount(){
+        this.dislikeCount--;
+    }
+
+    public void incrementLikeCount(){
+        this.likeCount++;
+    }
+
+    public void decrementLikeCount(){
+        this.likeCount--;
+    }
+
     public void startVideo(){
         //TO DO
     }

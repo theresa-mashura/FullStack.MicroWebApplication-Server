@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+VideoApp/src/main/resources/application.properties
+VideoApp/src/main/resources/application.yml

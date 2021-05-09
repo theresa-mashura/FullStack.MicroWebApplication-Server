@@ -136,4 +136,32 @@ public class VideoDataService {
         return true;
     }
 
+    public Video incrementLikes(Long id) {
+        Video temp = repository.findById(id).orElse(null);
+        assert temp != null;
+        temp.incrementLikeCount();
+        return repository.save(temp);
+    }
+
+    public Video decrementLikes(Long id) {
+        Video temp = repository.findById(id).orElse(null);
+        assert temp != null;
+        temp.decrementLikeCount();
+        return repository.save(temp);
+    }
+
+    public Video incrementDislikes(Long id) {
+        Video temp = repository.findById(id).orElse(null);
+        assert temp != null;
+        temp.incrementDislikeCount();
+        return repository.save(temp);
+    }
+
+    public Video decrementDislikes(Long id) {
+        Video temp = repository.findById(id).orElse(null);
+        assert temp != null;
+        temp.decrementDislikeCount();
+        return repository.save(temp);
+    }
+
 }
