@@ -101,4 +101,23 @@ public class VideoDataController {
         return new ResponseEntity<>(service.remove(id),HttpStatus.OK);
     }
 
+    @PatchMapping("/video/like/plus/{id}")
+    public ResponseEntity<Video> increaseLikeCount(@PathVariable Long id) {
+        return new ResponseEntity<>(service.incrementLikes(id), HttpStatus.OK);
+    }
+
+    @PatchMapping("/video/like/minus/{id}")
+    public ResponseEntity<Video> decreaseLikeCount(@PathVariable Long id) {
+        return new ResponseEntity<>(service.decrementLikes(id), HttpStatus.OK);
+    }
+
+    @PatchMapping("/video/dislike/plus/{id}")
+    public ResponseEntity<Video> increaseDislikeCount(@PathVariable Long id) {
+        return new ResponseEntity<>(service.incrementDislikes(id), HttpStatus.OK);
+    }
+
+    @PatchMapping("/video/dislike/minus/{id}")
+    public ResponseEntity<Video> decreaseDislikeCount(@PathVariable Long id) {
+        return new ResponseEntity<>(service.decrementDislikes(id), HttpStatus.OK);
+    }
 }
