@@ -126,4 +126,9 @@ public class VideoDataController {
     public ResponseEntity<Video> addComment(@PathVariable Long id, @RequestBody Comments comment) {
         return new ResponseEntity<>(service.addComment(id, comment), HttpStatus.OK);
     }
+
+    @PatchMapping("/video/incrementViewCount/{id}")
+    public ResponseEntity<Video> increaseViewCount(@PathVariable Long id){
+        return new ResponseEntity<>(service.incrementViewCount(id),HttpStatus.OK);
+    }
 }

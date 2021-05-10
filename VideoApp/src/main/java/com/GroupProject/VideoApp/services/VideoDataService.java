@@ -172,4 +172,10 @@ public class VideoDataService {
         return repository.save(temp);
     }
 
+    public Video incrementViewCount(Long id){
+        Video temp = repository.findById(id).orElse(null);
+        temp.incrementViewCount();
+        return repository.save(temp);
+    }
+
 }

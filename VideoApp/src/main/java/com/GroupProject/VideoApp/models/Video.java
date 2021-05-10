@@ -57,4 +57,6 @@ public class Video {
         this.likeCount--;
     }
 
+    public void incrementViewCount() {this.viewCount++;}
+
 }
