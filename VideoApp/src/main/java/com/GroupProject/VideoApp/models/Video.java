@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Setter
@@ -17,7 +18,7 @@ import java.util.Date;
 public class Video {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long videoId;
 
     String title;
@@ -31,6 +32,14 @@ public class Video {
     String category;
     //List<Tag> videoTags;
 
+    @ElementCollection
+    @CollectionTable(name="video_comments", joinColumns = @JoinColumn(name="video_id"))
+    @Column(name = "comment")
+    List<Comments> comments;
+
+    public void addCommentToList(Comments comment) {
+        this.comments.add(comment);
+    }
 
     public void incrementDislikeCount(){
         this.dislikeCount++;
@@ -48,19 +57,4 @@ public class Video {
         this.likeCount--;
     }
 
-    public void startVideo(){
-        //TO DO
-    }
-
-    public void pauseVideo(){
-        //TO DO
-    }
-
-    public void autoPlayVideo(){
-        //TO DO
-    }
-
-    public void addTag(){
-        //TO DO
-    }
 }

@@ -1,5 +1,6 @@
 package com.GroupProject.VideoApp.services;
 
+import com.GroupProject.VideoApp.models.Comments;
 import com.GroupProject.VideoApp.models.Video;
 import com.GroupProject.VideoApp.repositories.VideoDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -161,6 +162,13 @@ public class VideoDataService {
         Video temp = repository.findById(id).orElse(null);
         assert temp != null;
         temp.decrementDislikeCount();
+        return repository.save(temp);
+    }
+
+    public Video addComment(Long id, Comments comment){
+        Video temp = repository.findById(id).orElse(null);
+        assert temp != null;
+        temp.addCommentToList(comment);
         return repository.save(temp);
     }
 

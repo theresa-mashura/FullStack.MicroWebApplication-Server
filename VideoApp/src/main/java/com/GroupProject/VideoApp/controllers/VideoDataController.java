@@ -1,5 +1,6 @@
 package com.GroupProject.VideoApp.controllers;
 
+import com.GroupProject.VideoApp.models.Comments;
 import com.GroupProject.VideoApp.models.Video;
 import com.GroupProject.VideoApp.services.VideoDataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,5 +120,10 @@ public class VideoDataController {
     @PatchMapping("/video/dislike/minus/{id}")
     public ResponseEntity<Video> decreaseDislikeCount(@PathVariable Long id) {
         return new ResponseEntity<>(service.decrementDislikes(id), HttpStatus.OK);
+    }
+
+    @PatchMapping("/video/addComment/{id}")
+    public ResponseEntity<Video> addComment(@PathVariable Long id, @RequestBody Comments comment) {
+        return new ResponseEntity<>(service.addComment(id, comment), HttpStatus.OK);
     }
 }
