@@ -4,11 +4,13 @@ import com.GroupProject.VideoApp.models.Comments;
 import com.GroupProject.VideoApp.models.Video;
 import com.GroupProject.VideoApp.repositories.VideoDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class VideoDataService {
@@ -20,9 +22,9 @@ public class VideoDataService {
         this.repository = repository;
     }
 
-    public Iterable<Video> getAll(){
+    public List<Video> getAll() {
         List<Video> allVideos = new ArrayList<>();
-        for(Video v : repository.findAll()){
+        for (Video v : repository.findAll()) {
             allVideos.add(v);
         }
         Collections.sort(allVideos);
@@ -31,8 +33,8 @@ public class VideoDataService {
 
     public List<Video> getAllCategory(String category) {
         List<Video> allVideosInCategory = new ArrayList<>();
-        for(Video v : repository.findAll()){
-            if(v.getCategory().equals(category)){
+        for (Video v : repository.findAll()) {
+            if (v.getCategory().equals(category)) {
                 allVideosInCategory.add(v);
             }
         }
@@ -40,20 +42,41 @@ public class VideoDataService {
         return allVideosInCategory;
     }
 
+    public Iterable<Video> getTrending() {
+        List<Video> topFiveVideos = new ArrayList<>();
 
+        for (Video v : this.getAll()
+                .stream()
+                .sorted((video1, video2) -> {
+                    if(video1.getViewCount() == video2.getViewCount()){
+                        return 0;
+                    }
+                    else if(video1.getViewCount() > video2.getViewCount()){
+                        return -1;
+                    }
+                    else{
+                        return 1;
+                    }
+                })
+                .limit(5)
+                .collect(Collectors.toList())) {
+            topFiveVideos.add(v);
+        }
+        return topFiveVideos;
+    }
 
 
     // orElse(null) explanation:
     // https://stackoverflow.com/questions/44101061/missing-crudrepositoryfindone-method
-    public Video getOne(Long id){
+    public Video getOne(Long id) {
         return repository.findById(id).orElse(null);
     }
 
-    public Video add(Video video){
+    public Video add(Video video) {
         return repository.save(video);
     }
 
-    public Video update(Long id, Video video){
+    public Video update(Long id, Video video) {
         Video temp = repository.findById(id).orElse(null);
         temp.setTitle(video.getTitle());
         temp.setUserId(video.getUserId());
@@ -75,12 +98,12 @@ public class VideoDataService {
         return this.repository.save(temp);
     }
 
-    public Boolean remove(Long id){
+    public Boolean remove(Long id) {
         repository.deleteById(id);
         return true;
     }
 
-    public Boolean removeList(List<Video> videoList){
+    public Boolean removeList(List<Video> videoList) {
         repository.deleteAll(videoList);
         return true;
     }
@@ -113,14 +136,14 @@ public class VideoDataService {
         return repository.save(temp);
     }
 
-    public Video addComment(Long id, Comments comment){
+    public Video addComment(Long id, Comments comment) {
         Video temp = repository.findById(id).orElse(null);
         assert temp != null;
         temp.addCommentToList(comment);
         return repository.save(temp);
     }
 
-    public Video incrementViewCount(Long id){
+    public Video incrementViewCount(Long id) {
         Video temp = repository.findById(id).orElse(null);
         temp.incrementViewCount();
         return repository.save(temp);
