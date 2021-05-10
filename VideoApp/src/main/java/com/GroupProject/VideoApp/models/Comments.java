@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.joda.time.DateTime;
 
 import javax.persistence.Embeddable;
+import java.util.Date;
 
 @Embeddable
 @Getter
@@ -17,5 +17,5 @@ public class Comments {
 
     String postedBy;
     String commentText;
-    DateTime datePosted;
+    Date datePosted;
 }
