@@ -55,46 +55,52 @@ public class VideoDataController {
         return new ResponseEntity<>(service.getAll(),HttpStatus.OK);
     }
 
+    // get top 5 most watched videos
+    @GetMapping("/video/trending")
+    public ResponseEntity<Iterable<Video>> getTrendingVideos(){
+        return new ResponseEntity<>(service.getTrending(),HttpStatus.OK);
+    }
+
     // get all News videos
     @GetMapping("/video/news")
     public ResponseEntity<List<Video>> getAllNewsVideos(){
-        return new ResponseEntity<>(service.getAllNews(),HttpStatus.OK);
+        return new ResponseEntity<>(service.getAllCategory("News"),HttpStatus.OK);
     }
 
     // get all Sports videos
     @GetMapping("/video/sports")
     public ResponseEntity<List<Video>> getAllSportsVideos(){
-        return new ResponseEntity<>(service.getAllSports(),HttpStatus.OK);
+        return new ResponseEntity<>(service.getAllCategory("Sports"),HttpStatus.OK);
     }
 
     // get all Entertainment videos
     @GetMapping("/video/entertainment")
     public ResponseEntity<List<Video>> getAllEntertainmentVideos(){
-        return new ResponseEntity<>(service.getAllEntertaniment(),HttpStatus.OK);
+        return new ResponseEntity<>(service.getAllCategory("Entertainment"),HttpStatus.OK);
     }
 
     // get all Music videos
     @GetMapping("/video/music")
     public ResponseEntity<List<Video>> getAllMusicVideos(){
-        return new ResponseEntity<>(service.getAllMusic(),HttpStatus.OK);
+        return new ResponseEntity<>(service.getAllCategory("Music"),HttpStatus.OK);
     }
 
     // get all Traveling videos
     @GetMapping("/video/traveling")
     public ResponseEntity<List<Video>> getAllTravelingVideos(){
-        return new ResponseEntity<>(service.getAllTraveling(),HttpStatus.OK);
+        return new ResponseEntity<>(service.getAllCategory("Traveling"),HttpStatus.OK);
     }
 
     // get all Fitness videos
     @GetMapping("/video/fitness")
     public ResponseEntity<List<Video>> getAllFitnessVideos(){
-        return new ResponseEntity<>(service.getAllFitness(),HttpStatus.OK);
+        return new ResponseEntity<>(service.getAllCategory("Fitness"),HttpStatus.OK);
     }
 
     // get all Video Games videos
     @GetMapping("/video/videogames")
     public ResponseEntity<List<Video>> getAllVideoGamesVideos(){
-        return new ResponseEntity<>(service.getAllVideoGames(),HttpStatus.OK);
+        return new ResponseEntity<>(service.getAllCategory("Video Games"),HttpStatus.OK);
     }
 
     @DeleteMapping("/video/delete/{id}")

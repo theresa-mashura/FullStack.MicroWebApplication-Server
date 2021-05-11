@@ -4,10 +4,13 @@ import com.GroupProject.VideoApp.models.Comments;
 import com.GroupProject.VideoApp.models.Video;
 import com.GroupProject.VideoApp.repositories.VideoDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class VideoDataService {
@@ -19,93 +22,61 @@ public class VideoDataService {
         this.repository = repository;
     }
 
-    public Iterable<Video> getAll(){
-        return repository.findAll();
+    public List<Video> getAll() {
+        List<Video> allVideos = new ArrayList<>();
+        for (Video v : repository.findAll()) {
+            allVideos.add(v);
+        }
+        Collections.sort(allVideos);
+        return allVideos;
     }
 
-    public List<Video> getAllNews() {
-        List<Video> allNewsVideos = new ArrayList<>();
-        for(Video v : repository.findAll()){
-            if(v.getCategory().equals("News")){
-                allNewsVideos.add(v);
+    public List<Video> getAllCategory(String category) {
+        List<Video> allVideosInCategory = new ArrayList<>();
+        for (Video v : repository.findAll()) {
+            if (v.getCategory().equals(category)) {
+                allVideosInCategory.add(v);
             }
         }
-        return allNewsVideos;
+        Collections.sort(allVideosInCategory);
+        return allVideosInCategory;
     }
 
-    public List<Video> getAllSports() {
-        List<Video> allSportsVideos = new ArrayList<>();
-        for(Video v : repository.findAll()){
-            if(v.getCategory().equals("Sports")){
-                allSportsVideos.add(v);
-            }
+    public Iterable<Video> getTrending() {
+        List<Video> topFiveVideos = new ArrayList<>();
+
+        for (Video v : this.getAll()
+                .stream()
+                .sorted((video1, video2) -> {
+                    if(video1.getViewCount() == video2.getViewCount()){
+                        return 0;
+                    }
+                    else if(video1.getViewCount() > video2.getViewCount()){
+                        return -1;
+                    }
+                    else{
+                        return 1;
+                    }
+                })
+                .limit(5)
+                .collect(Collectors.toList())) {
+            topFiveVideos.add(v);
         }
-        return allSportsVideos;
+        return topFiveVideos;
     }
-
-    public List<Video> getAllEntertaniment() {
-        List<Video> allEntertainmentVideos = new ArrayList<>();
-        for(Video v : repository.findAll()){
-            if(v.getCategory().equals("Entertainment")){
-                allEntertainmentVideos.add(v);
-            }
-        }
-        return allEntertainmentVideos;
-    }
-
-    public List<Video> getAllMusic() {
-        List<Video> allMusicVideos = new ArrayList<>();
-        for(Video v : repository.findAll()){
-            if(v.getCategory().equals("Music")){
-                allMusicVideos.add(v);
-            }
-        }
-        return allMusicVideos;
-    }
-
-    public List<Video> getAllTraveling() {
-        List<Video> allTravelingVideos = new ArrayList<>();
-        for(Video v : repository.findAll()){
-            if(v.getCategory().equals("Traveling")){
-                allTravelingVideos.add(v);
-            }
-        }
-        return allTravelingVideos;
-    }
-
-    public List<Video> getAllFitness() {
-        List<Video> allFitnessVideos = new ArrayList<>();
-        for(Video v : repository.findAll()){
-            if(v.getCategory().equals("Fitness")){
-                allFitnessVideos.add(v);
-            }
-        }
-        return allFitnessVideos;
-    }
-
-    public List<Video> getAllVideoGames() {
-        List<Video> allVideoGamesVideos = new ArrayList<>();
-        for(Video v : repository.findAll()){
-            if(v.getCategory().equals("Video Games")){
-                allVideoGamesVideos.add(v);
-            }
-        }
-        return allVideoGamesVideos;
-    }
-
 
 
     // orElse(null) explanation:
     // https://stackoverflow.com/questions/44101061/missing-crudrepositoryfindone-method
-    public Video getOne(Long id){
+    public Video getOne(Long id) {
         return repository.findById(id).orElse(null);
     }
 
-    public Video add(Video video){
+    public Video add(Video video) {
         return repository.save(video);
     }
 
-    public Video update(Long id, Video video){
+    public Video update(Long id, Video video) {
         Video temp = repository.findById(id).orElse(null);
         temp.setTitle(video.getTitle());
         temp.setUserId(video.getUserId());
@@ -127,12 +98,12 @@ public class VideoDataService {
         return this.repository.save(temp);
     }
 
-    public Boolean remove(Long id){
+    public Boolean remove(Long id) {
         repository.deleteById(id);
         return true;
     }
 
-    public Boolean removeList(List<Video> videoList){
+    public Boolean removeList(List<Video> videoList) {
         repository.deleteAll(videoList);
         return true;
     }
@@ -165,14 +136,14 @@ public class VideoDataService {
         return repository.save(temp);
     }
 
-    public Video addComment(Long id, Comments comment){
+    public Video addComment(Long id, Comments comment) {
         Video temp = repository.findById(id).orElse(null);
         assert temp != null;
         temp.addCommentToList(comment);
         return repository.save(temp);
     }
 
-    public Video incrementViewCount(Long id){
+    public Video incrementViewCount(Long id) {
         Video temp = repository.findById(id).orElse(null);
         temp.incrementViewCount();
         return repository.save(temp);

@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Video {
+public class Video implements Comparable<Video>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -59,4 +59,34 @@ public class Video {
 
     public void incrementViewCount() {this.viewCount++;}
 
+
+    @Override
+    public int compareTo(Video o) {
+        if(this.getVideoId() - o.getVideoId() == 0){
+            return 0;
+        }
+        else if(this.getVideoId() - o.getVideoId() > 0){
+            return 1;
+        }
+        else{
+            return -1;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Video{" +
+                "videoId=" + videoId +
+//                ", title='" + title + '\'' +
+//                ", userId=" + userId +
+//                ", lengthOfVideo=" + lengthOfVideo +
+                ", viewCount=" + viewCount +
+//                ", description='" + description + '\'' +
+//                ", videoPostedDate=" + videoPostedDate +
+//                ", likeCount=" + likeCount +
+//                ", dislikeCount=" + dislikeCount +
+//                ", category='" + category + '\'' +
+//                ", comments=" + comments +
+                '}';
+    }
 }
