@@ -6,7 +6,7 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.util.IOUtils;
-import lombok.extern.slf4j.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 
 @Service
 @Slf4j  // Lombok - allows us to use log without having to create logger factory
@@ -30,8 +31,13 @@ public class VideoStorageService {
     private VideoDataService videoDataService;
 
     // Add Video to VideoDataRepository & upload the file
-    public Long uploadFile(MultipartFile file) {
-        Long videoId = videoDataService.add(new Video()).getVideoId();
+    public Long uploadFile(MultipartFile file, String title, String description, String category) {
+        Video newVideo = new Video();
+        newVideo.setVideoPostedDate(new Date());
+        newVideo.setTitle(title);
+        newVideo.setDescription(description);
+        newVideo.setCategory(category);
+        Long videoId = videoDataService.add(newVideo).getVideoId();
 
         File fileObj = convertMultiPartFileToFile(file);
         String filename = videoId.toString(); /*+ "_" + file.getOriginalFilename();*/
