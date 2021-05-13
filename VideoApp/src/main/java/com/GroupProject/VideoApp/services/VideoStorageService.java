@@ -37,6 +37,7 @@ public class VideoStorageService {
         newVideo.setTitle(title);
         newVideo.setDescription(description);
         newVideo.setCategory(category);
+        //newVideo.setUserId(userId);
         Long videoId = videoDataService.add(newVideo).getVideoId();
 
         File fileObj = convertMultiPartFileToFile(file);
