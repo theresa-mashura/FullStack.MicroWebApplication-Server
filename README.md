@@ -1,3 +1,4 @@
+
 ![ZT Logo Github](https://user-images.githubusercontent.com/78838228/118234712-bcf60800-b461-11eb-8651-4ce15657d898.png)
 # ZipTube v7.0 - Micro Web Application
 * **Objective** - to create an implementation of a small web service
@@ -61,6 +62,8 @@ npm install for React, import React-Bootstrap
 ![ZT Login](https://user-images.githubusercontent.com/78838228/118232750-07c25080-b45f-11eb-878d-b904bc2daa35.png)
 
 ![ZT Home Page Trending](https://user-images.githubusercontent.com/78838228/118233158-89b27980-b45f-11eb-95d2-e68b6bacb995.png)
+
+![ZT Video page](https://user-images.githubusercontent.com/78838228/118236706-6807c100-b464-11eb-890c-348f35ba0e10.png)
 
 ![ZT Explore](https://user-images.githubusercontent.com/78838228/118233168-8c14d380-b45f-11eb-8eb5-5071bb13cf7f.png)
 
