@@ -46,16 +46,21 @@
 ## Developmental Notes
 * **Wireframe** - Mockflow
 * **Frontend** - React
-* **Business Logic** - Java with Spring Boot framework
+* **Business Logic** - Java built on Maven with Spring Boot framework
 * **Data Layer** - MySQL hosted with AWS RDS
 * **Cloud** - Backend logic hosted by Heroku Frontend hosted with AWS EB(Elastic Beanstalk)
 
 ### Installation
 
-Use Spring Initializr to create an starting point for you application
+Use Spring Initializer to create an starting point for you application
 
 npm install for React, import React-Bootstrap
 
+### Running the application
+You can run back-end by running the VideoAppApplication.java from: com/GroupProject/VideoApp/VideoAppApplication.java
+
+You can run front-end reactjs with:
+``npm start``
 
 
 # Sample Pictures
