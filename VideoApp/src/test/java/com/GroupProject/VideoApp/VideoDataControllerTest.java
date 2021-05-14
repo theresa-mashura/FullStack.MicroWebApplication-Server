@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -45,5 +46,45 @@ public class VideoDataControllerTest {
                 .andExpect(MockMvcResultMatchers.content().string(expectedContent));
     }
 
+    @Test
+    public void getAllVideosTest() throws Exception {
+        Long givenId = 1L;
+        BDDMockito
+                .given(videoRepo.findById(givenId))
+                .willReturn(Optional.of(new Video()));
+        String expectedReturn ="{\"videoId\":null,\"title\":null,\"userId\":null,\"lengthOfVideo\":null," +
+                "\"viewCount\":0,\"description\":null,\"videoPostedDate\":null,\"likeCount\":0,\"dislikeCount\":0,\"category\":null,\"comments\":null}";
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/video/" + givenId))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(expectedReturn));
+    }
 
-}
+//    @Test
+//    public void getFitnessVideosTest() throws Exception {
+//        Long givenId = 1L;
+//        String category = getCategory();
+//        BDDMockito
+//                .given(videoRepo.findById(givenId))
+//                .willReturn(Optional.of(new Video()));
+//        String expectedReturn ="{\"videoId\":null,\"title\":null,\"userId\":null,\"lengthOfVideo\":null," +
+//                "\"viewCount\":0,\"description\":null,\"videoPostedDate\":null,\"likeCount\":0,\"dislikeCount\":0,\"category\":null,\"comments\":null}";
+//        this.mockMvc.perform(MockMvcRequestBuilders.get("/video/" + category))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(MockMvcResultMatchers.content().string(expectedReturn));
+//
+//    }
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+

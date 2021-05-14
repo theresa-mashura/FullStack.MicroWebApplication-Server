@@ -42,32 +42,23 @@ public class UserControllerTest {
                 .andExpect(MockMvcResultMatchers.content().string(expectedContent));
     }
 
-//    @Test
-//    public void testCreateUser() throws Exception {
-//        User users = new User();
-//        BDDMockito
-//                .given(repository.save(users))
-//                .willReturn(users);
-//
-//        String expectedReturn = "{\"userId\":null,\"email\":null,\"userName\":null,\"password\":null,\"firstName\":null,\"lastName\":null,\"role\":null}";
-//        this.mockMvc.perform(MockMvcRequestBuilders.post("/user/")
-//        .content(expectedReturn)
-//        .accept(MediaType.APPLICATION_JSON)
-//        .contentType(MediaType.APPLICATION_JSON)
-//        )
-//                .andExpect(MockMvcResultMatchers.status().isCreated())
-//                .andExpect(MockMvcResultMatchers.content().string(expectedReturn));
-//
-//    }
+    @Test
+    public void testCreateUser() throws Exception {
+        User user = new User();
+        BDDMockito
+                .given(repository.save(user))
+                .willReturn(user);
 
+        String expectedReturn = "{\"userId\":null,\"email\":null,\"userName\":null,\"password\":null,\"firstName\":null,\"lastName\":null,\"role\":null}";
+        this.mockMvc.perform(
+                MockMvcRequestBuilders
+                        .post("/user/")
+                        .content(expectedReturn)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                        .andExpect(MockMvcResultMatchers.status().isCreated());
 
-
-
-
-
-
-
-
+    }
 
 
 }

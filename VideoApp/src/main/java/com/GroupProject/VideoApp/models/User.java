@@ -1,5 +1,7 @@
 package com.GroupProject.VideoApp.models;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,4 +25,13 @@ public class User {
     String lastName;
     UserRole role;
 
+
+    public String toString() {
+        ObjectMapper obj = new ObjectMapper();
+        try {
+            return obj.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
