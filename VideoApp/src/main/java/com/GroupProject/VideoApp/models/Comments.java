@@ -18,4 +18,6 @@ public class Comments {
     String postedBy;
     String commentText;
     Date datePosted;
+    String user; // auth0 username
+    Long commentVideoId;
 }

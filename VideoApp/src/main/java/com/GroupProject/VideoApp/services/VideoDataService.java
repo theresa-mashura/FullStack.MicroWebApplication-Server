@@ -31,6 +31,17 @@ public class VideoDataService {
         return allVideos;
     }
 
+    public List<Video> getVideoByUploadUser(String user) {
+        List<Video> allVideosByUser = new ArrayList<>();
+        for (Video v : repository.findAll()) {
+            if (v.getUser().equals(user)) {
+                allVideosByUser.add(v);
+            }
+        }
+        Collections.sort(allVideosByUser);
+        return allVideosByUser;
+    }
+
     public List<Video> getAllCategory(String category) {
         List<Video> allVideosInCategory = new ArrayList<>();
         for (Video v : repository.findAll()) {
@@ -139,6 +150,7 @@ public class VideoDataService {
     public Video addComment(Long id, Comments comment) {
         Video temp = repository.findById(id).orElse(null);
         assert temp != null;
+        comment.setCommentVideoId(id);  // make comment Video Id and video Id match so we can find later on profile page
         temp.addCommentToList(comment);
         return repository.save(temp);
     }
@@ -147,6 +159,20 @@ public class VideoDataService {
         Video temp = repository.findById(id).orElse(null);
         temp.incrementViewCount();
         return repository.save(temp);
+    }
+
+    public List<Comments> commentsByUser(String user) {
+        List<Comments> commentsForUser = new ArrayList<>();
+        Iterable<Video> videos = this.repository.findAll();
+        for (Video v : videos) {
+            if (v.getComments().size() > 0) {
+                for (Comments c : v.getComments()) {
+                    if (c.getUser().equals(user))
+                        commentsForUser.add(c);
+                }
+            }
+        }
+        return commentsForUser;
     }
 
 }

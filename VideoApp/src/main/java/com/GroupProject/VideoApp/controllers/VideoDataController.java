@@ -55,6 +55,12 @@ public class VideoDataController {
         return new ResponseEntity<>(service.getAll(),HttpStatus.OK);
     }
 
+    // get all videos by user who uploaded
+    @GetMapping("/video/uploadUser/{user}")
+    public ResponseEntity<List<Video>> getVideosByUploadUser(@PathVariable String user){
+        return new ResponseEntity<>(service.getVideoByUploadUser(user),HttpStatus.OK);
+    }
+
     // get top 5 most watched videos
     @GetMapping("/video/trending")
     public ResponseEntity<Iterable<Video>> getTrendingVideos(){
@@ -136,5 +142,10 @@ public class VideoDataController {
     @PatchMapping("/video/incrementViewCount/{id}")
     public ResponseEntity<Video> increaseViewCount(@PathVariable Long id){
         return new ResponseEntity<>(service.incrementViewCount(id),HttpStatus.OK);
+    }
+
+    @GetMapping("/video/getComment/user/{user}")
+    public ResponseEntity<List<Comments>> getCommentsByUser(@PathVariable String user) {
+        return new ResponseEntity<>(service.commentsByUser(user), HttpStatus.OK);
     }
 }

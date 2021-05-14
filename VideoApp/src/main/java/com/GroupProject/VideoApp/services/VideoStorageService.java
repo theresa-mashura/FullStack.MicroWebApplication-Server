@@ -31,13 +31,13 @@ public class VideoStorageService {
     private VideoDataService videoDataService;
 
     // Add Video to VideoDataRepository & upload the file
-    public Long uploadFile(MultipartFile file, String title, String description, String category) {
+    public Long uploadFile(MultipartFile file, String title, String description, String category, String user) {
         Video newVideo = new Video();
         newVideo.setVideoPostedDate(new Date());
         newVideo.setTitle(title);
         newVideo.setDescription(description);
         newVideo.setCategory(category);
-        //newVideo.setUserId(userId);
+        newVideo.setUser(user);
         Long videoId = videoDataService.add(newVideo).getVideoId();
 
         File fileObj = convertMultiPartFileToFile(file);
