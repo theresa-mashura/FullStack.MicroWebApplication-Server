@@ -45,7 +45,7 @@
 
 ## Developmental Notes
 * **Wireframe** - Mockflow
-* **Frontend** - React
+* **Frontend** - Reactjs
 * **Business Logic** - Java built on Maven with Spring Boot framework
 * **Data Layer** - MySQL hosted with AWS RDS
 * **Cloud** - Backend logic hosted by Heroku Frontend hosted with AWS EB(Elastic Beanstalk)
