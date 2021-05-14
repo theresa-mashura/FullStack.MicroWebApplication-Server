@@ -71,24 +71,18 @@
             <version>1.11.52</version>
         </dependency>
 
- Justin_branch
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>2.24.0</version>
         </dependency>
+
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
 
-		<dependency>
-			<groupId>com.amazonaws</groupId>
-			<artifactId>aws-java-sdk-s3</artifactId>
-			<version>1.11.52</version>
-		</dependency>
- master
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -102,10 +96,6 @@
             <version>2.12.3</version>
         </dependency>
 
-Justin_branch
-
-
-master
     </dependencies>
 
 
