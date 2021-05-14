@@ -63,7 +63,7 @@ You can run front-end reactjs with:
 ``npm start``
 
 
-# Sample Pictures
+# DEMO
 ![ZT Login](https://user-images.githubusercontent.com/78838228/118232750-07c25080-b45f-11eb-878d-b904bc2daa35.png)
 
 ![ZT Home Page Trending](https://user-images.githubusercontent.com/78838228/118233158-89b27980-b45f-11eb-95d2-e68b6bacb995.png)
