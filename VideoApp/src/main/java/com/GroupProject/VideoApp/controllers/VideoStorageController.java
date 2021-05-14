@@ -25,9 +25,9 @@ public class VideoStorageController {
 
     @PostMapping("/upload")
     public ResponseEntity<Long> uploadFile(@RequestParam(value = "file") MultipartFile file, @RequestParam(value="title") String title,
-                                           @RequestParam(value="description") String description, @RequestParam(value="category") String category
-                                           ) {
-        return new ResponseEntity<>(service.uploadFile(file, title, description, category), HttpStatus.OK);
+                                           @RequestParam(value="description") String description, @RequestParam(value="category") String category,
+                                           @RequestParam(value="user") String user) {
+        return new ResponseEntity<>(service.uploadFile(file, title, description, category, user), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{filename}")

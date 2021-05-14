@@ -22,7 +22,8 @@ public class Video implements Comparable<Video>{
     Long videoId;
 
     String title;
-    String userId; // id of User who uploaded video
+    Integer userId; // id of User who uploaded video
+    String user;
     Integer lengthOfVideo;
     Integer viewCount = 0;
     String description;
