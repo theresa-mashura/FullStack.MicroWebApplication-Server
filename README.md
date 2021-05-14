@@ -21,19 +21,12 @@
 ## Front End of ZipTube Application
 * https://github.com/Christopher-Allen-21/FullStack.MicroWebApplication-Client
 
-
-
-# Micro Web Application
-* **Objective** - to create an implementation of a small web service
-* **Purpose** - to demonstrate the construction of a full-stacked web-application, development of both front end (client side) and back end(server side) portions of web application, hosting on cloud services for deployment.
-
-
 ## Video Library Application
-
 ### User Stories to Fulfill  
 * As a client, (logged in) I
     * can upload new videos
 	* can view list of all videos
+	* can filter videos by category
 	* can post simple text-comments on a video
 	* can get in contact with developers
 	* can login and view profile
@@ -48,18 +41,25 @@
 * **Frontend** - Reactjs
 * **Business Logic** - Java built on Maven with Spring Boot framework
 * **Data Layer** - MySQL hosted with AWS RDS
-* **Cloud** - Backend logic hosted by Heroku Frontend hosted with AWS EB(Elastic Beanstalk)
+* **Cloud** - Backend logic hosted by Heroku. Frontend hosted with AWS Amplify. AWS S3 buckets for video storage.
 
-### Installation
+## Installation
+#### Back End
+* Use Spring Initializer to create an starting point for you application
+* Project Lombok
+* AWS s3
+* mockito
 
-Use Spring Initializer to create an starting point for you application
+#### Front End
+* npm install for React
+* import React-Bootstrap, auth0-react, react-router-don, react-promist-tracker, emailjs-com
 
-npm install for React, import React-Bootstrap
+## Running the application
+#### Back End
+* You can run back-end by running the VideoAppApplication.java from: com/GroupProject/VideoApp/VideoAppApplication.java
 
-### Running the application
-You can run back-end by running the VideoAppApplication.java from: com/GroupProject/VideoApp/VideoAppApplication.java
-
-You can run front-end reactjs with:
+#### Front End
+* You can run reactjs with:
 ``npm start``
 
 
