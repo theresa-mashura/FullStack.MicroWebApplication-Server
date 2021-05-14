@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
+
 @RestController
 @RequestMapping("/file")
 @CrossOrigin
@@ -22,8 +24,10 @@ public class VideoStorageController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<Long> uploadFile(@RequestParam(value = "file") MultipartFile file) {
-        return new ResponseEntity<>(service.uploadFile(file), HttpStatus.OK);
+    public ResponseEntity<Long> uploadFile(@RequestParam(value = "file") MultipartFile file, @RequestParam(value="title") String title,
+                                           @RequestParam(value="description") String description, @RequestParam(value="category") String category
+                                           ) {
+        return new ResponseEntity<>(service.uploadFile(file, title, description, category), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{filename}")
@@ -39,7 +43,7 @@ public class VideoStorageController {
                 .ok()
                 .contentLength(data.length)
                 .header("Content-type", "application/octet-stream")
-                .header("Content-disposition", "attachment; filename=\"" + filename + "\"")
+                .header("Content-disposition", "attachment;filename=\"" + filename + "\"")
                 .body(resource);
     }
 }
