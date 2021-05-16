@@ -3,13 +3,12 @@
 cloud:
     aws:
       credentials:
-        access-key: AKIA2OJ2F52DVCKF4ZPU
-        secret-key: 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
+        access-key:
+        secret-key:
       region:
         static: us-east-1
       stack:
         auto: false
-
 
 application:
   bucket:
@@ -17,6 +16,6 @@ application:
 
 
 server:
-  port: 8090
+  port: 5000
 
 

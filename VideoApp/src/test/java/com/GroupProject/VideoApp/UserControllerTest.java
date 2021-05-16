@@ -1,4 +1,4 @@
-package java.com.GroupProject.VideoApp;
+package com.GroupProject.VideoApp;
 
 
 import com.GroupProject.VideoApp.models.User;
